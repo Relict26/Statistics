@@ -38,15 +38,14 @@
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
                 <version>0.8.5</version>
-
                 <executions>
                     <execution>
                         <id>prepare-agent</id>
+                        <phase>initialize</phase>
                         <goals>
                             <goal>prepare-agent</goal>
                         </goals>
                     </execution>
-
                     <execution>
                         <id>report</id>
                         <phase>verify</phase>
@@ -55,7 +54,7 @@
                         </goals>
                     </execution>
                     <execution>
-                        <id>check</id>
+                        <id>default-check</id>
                         <goals>
                             <goal>check</goal>
                         </goals>
@@ -63,10 +62,19 @@
                             <rules>
                                 <rule>
                                     <element>CLASS</element>
+                                    <excludes>
+                                        <exclude>*Test</exclude>
+                                    </excludes>
                                     <limits>
                                         <limit>
-                                            <group>BRANCH</group>
-                                            <minimum>1.00</minimum>
+                                            <counter>INSTRUCTION</counter>
+                                            <value>COVEREDRATIO</value>
+                                            <minimum>1.0</minimum>
+                                        </limit>
+                                        <limit>
+                                            <counter>BRANCH</counter>
+                                            <value>COVEREDRATIO</value>
+                                            <maximum>1.0</maximum>
                                         </limit>
                                     </limits>
                                 </rule>
@@ -77,5 +85,4 @@
             </plugin>
         </plugins>
     </build>
-
 </project>

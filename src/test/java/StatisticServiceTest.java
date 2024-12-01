@@ -7,7 +7,7 @@ public class StatisticServiceTest {
 
     @Test
     void findMax() {
-        StatisticService service = new StatisticService();
+        ru.netology.statistic.StatisticService service = new ru.netology.statistic.StatisticService();
 
         long[] incomesInBillions = {12, 5, 8, 4, 5, 3, 8, 6, 11, 11, 12};
         long expected = 12;
